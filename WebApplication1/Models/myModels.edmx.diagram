@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b31e1867b981490fb0f89c7ca63ee1e2" Name="Diagram1">
+        <EntityTypeShape EntityType="JamesThewDOTcomModel.Role" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JamesThewDOTcomModel.Subscription_Type" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JamesThewDOTcomModel.Users" Width="1.5" PointX="2.875" PointY="2.5" />
+        <AssociationConnector Association="JamesThewDOTcomModel.RoleUsers" />
+        <AssociationConnector Association="JamesThewDOTcomModel.Subscription_TypeUsers" />
+        <EntityTypeShape EntityType="JamesThewDOTcomModel.Annoucments" Width="1.5" PointX="9.625" PointY="0.5" />
+        <EntityTypeShape EntityType="JamesThewDOTcomModel.Contests" Width="1.5" PointX="7.875" PointY="0.5" />
+        <EntityTypeShape EntityType="JamesThewDOTcomModel.Participants" Width="1.5" PointX="8" PointY="3.125" />
+        <AssociationConnector Association="JamesThewDOTcomModel.UsersParticipants" />
+        <AssociationConnector Association="JamesThewDOTcomModel.ContestsParticipants" />
+        <EntityTypeShape EntityType="JamesThewDOTcomModel.Feedbacks" Width="1.5" PointX="4.125" PointY="0.5" />
+        <AssociationConnector Association="JamesThewDOTcomModel.FeedbacksUsers" />
+        <EntityTypeShape EntityType="JamesThewDOTcomModel.Recipes" Width="1.5" PointX="5.125" PointY="2.625" />
+        <AssociationConnector Association="JamesThewDOTcomModel.RecipesUsers" />
+        <EntityTypeShape EntityType="JamesThewDOTcomModel.Tips" Width="1.5" PointX="6.125" PointY="0.5" />
+        <AssociationConnector Association="JamesThewDOTcomModel.TipsUsers" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
