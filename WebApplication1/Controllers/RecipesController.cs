@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,11 +16,23 @@ namespace WebApplication1.Controllers
         private JamesThewDOTcomEntities db = new JamesThewDOTcomEntities();
 
         // GET: Recipes
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
-            var recipes1 = db.Recipes1.Include(r => r.User);
-            return View(recipes1.ToList());
-        }
+            //var recipes1 = db.Recipes1.Include(r => r.User);
+            //return View(recipes1.ToList());
+
+
+            ViewBag.search = search;
+            if (search == null)
+            {
+                return View(db.Recipes1.ToList());
+            }
+            else
+            {
+                return View(db.Recipes1.Where(x => x.Title.Contains(search)).ToList());
+            
+             }
+            }
 
         // GET: Recipes/Details/5
         public ActionResult Details(int? id)
@@ -48,10 +61,17 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Ingridiants,Details,UsersId")] Recipes recipes)
+        public ActionResult Create(Recipes recipes)
         {
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileNameWithoutExtension(recipes.ImageFile.FileName);
+                string extention = Path.GetExtension(recipes.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("hhmmssfff") + extention;
+                recipes.ImagePath = "Images/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                recipes.ImageFile.SaveAs(fileName);
+
                 db.Recipes1.Add(recipes);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -128,5 +148,8 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+       
+
+        
     }
 }

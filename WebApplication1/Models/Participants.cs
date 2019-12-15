@@ -12,7 +12,7 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class Participants
     {
         public int Id { get; set; }
@@ -28,9 +28,9 @@ namespace WebApplication1.Models
         [DataType(DataType.MultilineText)]
         public System.TimeSpan Details { get; set; }
         public int UsersId { get; set; }
-        [Display(Name ="Contest")]
+        [Display(Name = "Contest")]
         public int ContestsId { get; set; }
-    
+
         public virtual Users User { get; set; }
         public virtual Contests Contest { get; set; }
     }

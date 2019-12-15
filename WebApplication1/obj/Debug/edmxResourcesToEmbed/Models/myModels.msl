@@ -79,6 +79,7 @@
           <ScalarProperty Name="Ingridiants" ColumnName="Ingridiants" />
           <ScalarProperty Name="Details" ColumnName="Details" />
           <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

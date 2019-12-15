@@ -31,9 +31,8 @@
                 @if (Session["UserName"] != null)
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/Users/Details"> @Session["UserName"] </a>
+                        <li><a href="#"> @Session["UserName"] </a>
                         <li />
-
                         <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
                     </ul>
                 }

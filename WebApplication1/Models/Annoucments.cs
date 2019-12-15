@@ -12,7 +12,7 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class Annoucments
     {
         public int Id { get; set; }
@@ -27,5 +27,6 @@ namespace WebApplication1.Models
         [Required]
         [DataType(DataType.Date)]
         public System.DateTime Date_Of_Annoucment { get; set; }
+
     }
 }

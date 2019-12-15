@@ -137,5 +137,7 @@ namespace WebApplication1.Controllers
             Session.RemoveAll();
             return Redirect("/home/index");
         }
+
+       
     }
 }

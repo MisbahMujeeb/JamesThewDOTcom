@@ -12,7 +12,6 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,9 +22,9 @@ namespace WebApplication1.Models
             this.Recipes = new HashSet<Recipes>();
             this.Tips = new HashSet<Tips>();
         }
-    
+
         public int Id { get; set; }
-        [Display(Name ="User Name")]
+        [Display(Name = "User Name")]
         [Required]
         public string User_Name { get; set; }
         [Display(Name = "Email")]
@@ -40,7 +39,7 @@ namespace WebApplication1.Models
         [Display(Name = "Subscription Type")]
         [Required]
         public int Subscription_Type_id { get; set; }
-    
+
         public virtual Role Role { get; set; }
         public virtual Subscription_Type Subscription_Type { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

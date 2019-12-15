@@ -15,10 +15,18 @@ namespace WebApplication1.Controllers
         private JamesThewDOTcomEntities db = new JamesThewDOTcomEntities();
 
         // GET: Tips
-        public ActionResult Index()
+        public ActionResult Index(string searchTips)
         {
-            var tips = db.Tips.Include(t => t.User);
-            return View(tips.ToList());
+            ViewBag.searchTips = searchTips;
+            if (searchTips == null)
+            {
+                return View(db.Tips.ToList());
+            }
+            else
+            {
+                return View(db.Tips.Where(x => x.Title.Contains(searchTips)).ToList());
+
+            }
         }
 
         // GET: Tips/Details/5

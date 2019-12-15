@@ -9,6 +9,10 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Index", "Tips", FormMethod.Get))
+{
+    <input value="@ViewBag.searchTips" class="form-control pull-right my_search" type="text" placeholder="Search Here..." name="searchTips" />
+}
 <table class="table">
     <tr>
         <th>

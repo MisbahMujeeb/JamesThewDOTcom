@@ -11,12 +11,14 @@ namespace WebApplication1.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    
+    using System.Web;
+
     public partial class Recipes
     {
         public int Id { get; set; }
-        [Display(Name ="Title")]
+        [Display(Name = "Title")]
         [Required]
         public string Title { get; set; }
         [Display(Name = "Ingredients")]
@@ -28,6 +30,8 @@ namespace WebApplication1.Models
         [DataType(DataType.MultilineText)]
         public string Details { get; set; }
         public int UsersId { get; set; }
+        public string ImagePath { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
     
         public virtual Users User { get; set; }
     }

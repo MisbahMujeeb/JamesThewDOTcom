@@ -12,11 +12,11 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class Tips
     {
         public int Id { get; set; }
-        [Display(Name ="Title")]
+        [Display(Name = "Title")]
         [Required]
         public string Title { get; set; }
         [Display(Name = "Details")]
@@ -24,7 +24,7 @@ namespace WebApplication1.Models
         [DataType(DataType.MultilineText)]
         public string Details { get; set; }
         public int UsersId { get; set; }
-    
+
         public virtual Users User { get; set; }
     }
 }

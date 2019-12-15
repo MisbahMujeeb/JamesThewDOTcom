@@ -184,6 +184,7 @@
     <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="User" Relationship="JamesThewDOTcomModel.RecipesUsers" FromRole="Recipes" ToRole="Users" />
     <Property Name="UsersId" Type="Int32" Nullable="false" />
+    <Property Name="ImagePath" Type="String" Nullable="false" />
   </EntityType>
   <Association Name="RecipesUsers">
     <End Type="JamesThewDOTcomModel.Recipes" Role="Recipes" Multiplicity="*" />

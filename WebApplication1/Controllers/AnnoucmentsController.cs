@@ -48,6 +48,7 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Details,Date_Of_Annoucment")] Annoucments annoucments)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Annoucments.Add(annoucments);
