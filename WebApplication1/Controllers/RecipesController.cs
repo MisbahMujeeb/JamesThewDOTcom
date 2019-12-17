@@ -16,23 +16,33 @@ namespace WebApplication1.Controllers
         private JamesThewDOTcomEntities db = new JamesThewDOTcomEntities();
 
         // GET: Recipes
-        public ActionResult Index(string search)
+        public ActionResult Index(string searchRecipe)
         {
-            //var recipes1 = db.Recipes1.Include(r => r.User);
-            //return View(recipes1.ToList());
 
-
-            ViewBag.search = search;
-            if (search == null)
+            ViewBag.search = searchRecipe;
+            if (searchRecipe == null)
             {
                 return View(db.Recipes1.ToList());
             }
             else
             {
-                return View(db.Recipes1.Where(x => x.Title.Contains(search)).ToList());
-            
-             }
+                return View(db.Recipes1.Where(x => x.Title.Contains(searchRecipe)).ToList());
+
             }
+        }
+        public JsonResult API(string searchRecipe)
+        {
+            
+            if (searchRecipe == null)
+            {
+                return Json(db.Recipes1.ToList(), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(db.Recipes1.Where(x => x.Title.Contains(searchRecipe)).ToList(), JsonRequestBehavior.AllowGet);
+
+            }
+        }
 
         // GET: Recipes/Details/5
         public ActionResult Details(int? id)
@@ -102,7 +112,7 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Ingridiants,Details,UsersId")] Recipes recipes)
+        public ActionResult Edit([Bind(Include = "Id,Title,Ingridiants,Details,UsersId,ImagePath,FreeOrPaid")] Recipes recipes)
         {
             if (ModelState.IsValid)
             {
@@ -148,8 +158,5 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
-       
-
-        
     }
 }

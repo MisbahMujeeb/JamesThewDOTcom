@@ -10,132 +10,116 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class TipsController : Controller
+    public class Recipe_FeedbackController : Controller
     {
         private JamesThewDOTcomEntities db = new JamesThewDOTcomEntities();
 
-        // GET: Tips
-        public ActionResult Index(string searchTips)
+        // GET: Recipe_Feedback
+        public ActionResult Index()
         {
-            ViewBag.search = searchTips;
-            if (searchTips == null)
-            {
-                return View(db.Tips.ToList());
-            }
-            else
-            {
-                return View(db.Tips.Where(x => x.Title.Contains(searchTips)).ToList());
-
-            }
-        }
-        public JsonResult API(string searchTips)
-        {
-            if (searchTips == null)
-            {
-                return Json(db.Tips.ToList(),JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(db.Tips.Where(x => x.Title.Contains(searchTips)).ToList(), JsonRequestBehavior.AllowGet);
-
-            }
+            var recipe_Feedback = db.Recipe_Feedback.Include(r => r.Recipe).Include(r => r.User);
+            return View(recipe_Feedback.ToList());
         }
 
-        // GET: Tips/Details/5
+        // GET: Recipe_Feedback/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tips tips = db.Tips.Find(id);
-            if (tips == null)
+            Recipe_Feedback recipe_Feedback = db.Recipe_Feedback.Find(id);
+            if (recipe_Feedback == null)
             {
                 return HttpNotFound();
             }
-            return View(tips);
+            return View(recipe_Feedback);
         }
 
-        // GET: Tips/Create
+        // GET: Recipe_Feedback/Create
         public ActionResult Create()
         {
+            ViewBag.RecipesId = new SelectList(db.Recipes1, "Id", "Title");
             ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name");
             return View();
         }
 
-        // POST: Tips/Create
+        // POST: Recipe_Feedback/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Details,UsersId")] Tips tips)
+        public ActionResult Create([Bind(Include = "Id,RecipeFeedback,RecipesId,UsersId")] Recipe_Feedback recipe_Feedback)
         {
             if (ModelState.IsValid)
             {
-                db.Tips.Add(tips);
+                db.Recipe_Feedback.Add(recipe_Feedback);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name", tips.UsersId);
-            return View(tips);
+            ViewBag.RecipesId = new SelectList(db.Recipes1, "Id", "Title", recipe_Feedback.RecipesId);
+            ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name", recipe_Feedback.UsersId);
+            return View(recipe_Feedback);
         }
 
-        // GET: Tips/Edit/5
+        // GET: Recipe_Feedback/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tips tips = db.Tips.Find(id);
-            if (tips == null)
+            Recipe_Feedback recipe_Feedback = db.Recipe_Feedback.Find(id);
+            if (recipe_Feedback == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name", tips.UsersId);
-            return View(tips);
+            ViewBag.RecipesId = new SelectList(db.Recipes1, "Id", "Title", recipe_Feedback.RecipesId);
+            ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name", recipe_Feedback.UsersId);
+            return View(recipe_Feedback);
         }
 
-        // POST: Tips/Edit/5
+        // POST: Recipe_Feedback/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Details,UsersId")] Tips tips)
+        public ActionResult Edit([Bind(Include = "Id,RecipeFeedback,RecipesId,UsersId")] Recipe_Feedback recipe_Feedback)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tips).State = EntityState.Modified;
+                db.Entry(recipe_Feedback).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name", tips.UsersId);
-            return View(tips);
+            ViewBag.RecipesId = new SelectList(db.Recipes1, "Id", "Title", recipe_Feedback.RecipesId);
+            ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name", recipe_Feedback.UsersId);
+            return View(recipe_Feedback);
         }
 
-        // GET: Tips/Delete/5
+        // GET: Recipe_Feedback/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tips tips = db.Tips.Find(id);
-            if (tips == null)
+            Recipe_Feedback recipe_Feedback = db.Recipe_Feedback.Find(id);
+            if (recipe_Feedback == null)
             {
                 return HttpNotFound();
             }
-            return View(tips);
+            return View(recipe_Feedback);
         }
 
-        // POST: Tips/Delete/5
+        // POST: Recipe_Feedback/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Tips tips = db.Tips.Find(id);
-            db.Tips.Remove(tips);
+            Recipe_Feedback recipe_Feedback = db.Recipe_Feedback.Find(id);
+            db.Recipe_Feedback.Remove(recipe_Feedback);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -150,3 +134,19 @@ namespace WebApplication1.Controllers
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

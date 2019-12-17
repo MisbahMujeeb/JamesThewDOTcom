@@ -80,6 +80,7 @@
           <ScalarProperty Name="Details" ColumnName="Details" />
           <ScalarProperty Name="UsersId" ColumnName="UsersId" />
           <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="FreeOrPaid" ColumnName="FreeOrPaid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -89,6 +90,16 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recipe_Feedback">
+      <EntityTypeMapping TypeName="IsTypeOf(JamesThewDOTcomModel.Recipe_Feedback)">
+        <MappingFragment StoreEntitySet="Recipe_Feedback">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RecipeFeedback" ColumnName="RecipeFeedback" />
+          <ScalarProperty Name="RecipesId" ColumnName="RecipesId" />
           <ScalarProperty Name="UsersId" ColumnName="UsersId" />
         </MappingFragment>
       </EntityTypeMapping>

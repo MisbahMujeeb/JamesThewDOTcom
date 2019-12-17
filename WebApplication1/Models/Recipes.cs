@@ -11,12 +11,18 @@ namespace WebApplication1.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
 
     public partial class Recipes
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Recipes()
+        {
+            this.FreeOrPaid = "Paid";
+            this.Recipe_Feedback = new HashSet<Recipe_Feedback>();
+        }
+
         public int Id { get; set; }
         [Display(Name = "Title")]
         [Required]
@@ -32,7 +38,10 @@ namespace WebApplication1.Models
         public int UsersId { get; set; }
         public string ImagePath { get; set; }
         public HttpPostedFileBase ImageFile { get; set; }
+        public string FreeOrPaid { get; set; }
     
         public virtual Users User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Recipe_Feedback> Recipe_Feedback { get; set; }
     }
 }

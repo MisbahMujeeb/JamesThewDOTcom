@@ -15,6 +15,7 @@
     <EntitySet Name="Feedbacks" EntityType="JamesThewDOTcomModel.Store.Feedbacks" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Recipes1" EntityType="JamesThewDOTcomModel.Store.Recipes1" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Tips" EntityType="JamesThewDOTcomModel.Store.Tips" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Recipe_Feedback" EntityType="JamesThewDOTcomModel.Store.Recipe_Feedback" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="RoleUsers" Association="JamesThewDOTcomModel.Store.RoleUsers">
       <End Role="Role" EntitySet="Roles" />
       <End Role="Users" EntitySet="Users" />
@@ -41,6 +42,14 @@
     </AssociationSet>
     <AssociationSet Name="TipsUsers" Association="JamesThewDOTcomModel.Store.TipsUsers">
       <End Role="Tips" EntitySet="Tips" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="Recipe_FeedbackRecipes" Association="JamesThewDOTcomModel.Store.Recipe_FeedbackRecipes">
+      <End Role="Recipe_Feedback" EntitySet="Recipe_Feedback" />
+      <End Role="Recipes" EntitySet="Recipes1" />
+    </AssociationSet>
+    <AssociationSet Name="Recipe_FeedbackUsers" Association="JamesThewDOTcomModel.Store.Recipe_FeedbackUsers">
+      <End Role="Recipe_Feedback" EntitySet="Recipe_Feedback" />
       <End Role="Users" EntitySet="Users" />
     </AssociationSet>
   </EntityContainer>
@@ -117,6 +126,7 @@
     <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UsersId" Type="int" Nullable="false" />
     <Property Name="ImagePath" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FreeOrPaid" Type="nvarchar(max)" Nullable="false" DefaultValue="Paid" />
   </EntityType>
   <EntityType Name="Tips">
     <Key>
@@ -125,6 +135,15 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UsersId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Recipe_Feedback">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RecipeFeedback" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RecipesId" Type="int" Nullable="false" />
     <Property Name="UsersId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="RoleUsers">
@@ -211,6 +230,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="Recipe_FeedbackRecipes">
+    <End Role="Recipe_Feedback" Type="JamesThewDOTcomModel.Store.Recipe_Feedback" Multiplicity="*" />
+    <End Role="Recipes" Type="JamesThewDOTcomModel.Store.Recipes1" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Recipes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recipe_Feedback">
+        <PropertyRef Name="RecipesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Recipe_FeedbackUsers">
+    <End Role="Recipe_Feedback" Type="JamesThewDOTcomModel.Store.Recipe_Feedback" Multiplicity="*" />
+    <End Role="Users" Type="JamesThewDOTcomModel.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recipe_Feedback">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -269,6 +312,15 @@
             <End Role="Tips" EntitySet="Tips" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Recipe_Feedback" EntityType="JamesThewDOTcomModel.Recipe_Feedback" />
+          <AssociationSet Name="Recipe_FeedbackRecipes" Association="JamesThewDOTcomModel.Recipe_FeedbackRecipes">
+            <End Role="Recipe_Feedback" EntitySet="Recipe_Feedback" />
+            <End Role="Recipes" EntitySet="Recipes1" />
+          </AssociationSet>
+          <AssociationSet Name="Recipe_FeedbackUsers" Association="JamesThewDOTcomModel.Recipe_FeedbackUsers">
+            <End Role="Recipe_Feedback" EntitySet="Recipe_Feedback" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Users">
           <Key>
@@ -286,6 +338,7 @@
           <NavigationProperty Name="Feedbacks" Relationship="JamesThewDOTcomModel.FeedbacksUsers" FromRole="Users" ToRole="Feedbacks" />
           <NavigationProperty Name="Recipes" Relationship="JamesThewDOTcomModel.RecipesUsers" FromRole="Users" ToRole="Recipes" />
           <NavigationProperty Name="Tips" Relationship="JamesThewDOTcomModel.TipsUsers" FromRole="Users" ToRole="Tips" />
+          <NavigationProperty Name="Recipe_Feedback" Relationship="JamesThewDOTcomModel.Recipe_FeedbackUsers" FromRole="Users" ToRole="Recipe_Feedback" />
         </EntityType>
         <Association Name="RoleUsers">
           <End Type="JamesThewDOTcomModel.Role" Role="Role" Multiplicity="1" />
@@ -400,6 +453,8 @@
           <NavigationProperty Name="User" Relationship="JamesThewDOTcomModel.RecipesUsers" FromRole="Recipes" ToRole="Users" />
           <Property Name="UsersId" Type="Int32" Nullable="false" />
           <Property Name="ImagePath" Type="String" Nullable="false" />
+          <NavigationProperty Name="Recipe_Feedback" Relationship="JamesThewDOTcomModel.Recipe_FeedbackRecipes" FromRole="Recipes" ToRole="Recipe_Feedback" />
+          <Property Name="FreeOrPaid" Type="String" Nullable="false" DefaultValue="Paid" />
         </EntityType>
         <Association Name="RecipesUsers">
           <End Type="JamesThewDOTcomModel.Recipes" Role="Recipes" Multiplicity="*" />
@@ -431,6 +486,41 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Tips">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Recipe_Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecipeFeedback" Type="String" Nullable="false" />
+          <NavigationProperty Name="Recipe" Relationship="JamesThewDOTcomModel.Recipe_FeedbackRecipes" FromRole="Recipe_Feedback" ToRole="Recipes" />
+          <Property Name="RecipesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="JamesThewDOTcomModel.Recipe_FeedbackUsers" FromRole="Recipe_Feedback" ToRole="Users" />
+          <Property Name="UsersId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="Recipe_FeedbackRecipes">
+          <End Type="JamesThewDOTcomModel.Recipe_Feedback" Role="Recipe_Feedback" Multiplicity="*" />
+          <End Type="JamesThewDOTcomModel.Recipes" Role="Recipes" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recipe_Feedback">
+              <PropertyRef Name="RecipesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Recipe_FeedbackUsers">
+          <End Type="JamesThewDOTcomModel.Recipe_Feedback" Role="Recipe_Feedback" Multiplicity="*" />
+          <End Type="JamesThewDOTcomModel.Users" Role="Users" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recipe_Feedback">
               <PropertyRef Name="UsersId" />
             </Dependent>
           </ReferentialConstraint>
@@ -520,6 +610,7 @@
           <ScalarProperty Name="Details" ColumnName="Details" />
           <ScalarProperty Name="UsersId" ColumnName="UsersId" />
           <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="FreeOrPaid" ColumnName="FreeOrPaid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -529,6 +620,16 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recipe_Feedback">
+      <EntityTypeMapping TypeName="IsTypeOf(JamesThewDOTcomModel.Recipe_Feedback)">
+        <MappingFragment StoreEntitySet="Recipe_Feedback">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RecipeFeedback" ColumnName="RecipeFeedback" />
+          <ScalarProperty Name="RecipesId" ColumnName="RecipesId" />
           <ScalarProperty Name="UsersId" ColumnName="UsersId" />
         </MappingFragment>
       </EntityTypeMapping>

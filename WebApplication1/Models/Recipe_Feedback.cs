@@ -11,21 +11,15 @@ namespace WebApplication1.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class Annoucments
+    
+    public partial class Recipe_Feedback
     {
         public int Id { get; set; }
-        [Display(Name = "Title")]
-        [Required]
-        public string Title { get; set; }
-        [Display(Name = "Details")]
-        [Required]
-        [DataType(DataType.MultilineText)]
-        public string Details { get; set; }
-        [Display(Name = "Date of Annoucmnet")]
-        [Required]
-        [DataType(DataType.Date)]
-        public System.DateTime Date_Of_Annoucment { get; set; }
+        public string RecipeFeedback { get; set; }
+        public int RecipesId { get; set; }
+        public int UsersId { get; set; }
+    
+        public virtual Recipes Recipe { get; set; }
+        public virtual Users User { get; set; }
     }
 }

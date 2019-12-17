@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/14/2019 23:05:26
+-- Date Created: 12/17/2019 15:43:43
 -- Generated from EDMX file: C:\Users\haseeb\Desktop\eProject(JamesTHewDOTcom)\JamesThewDOTcom\WebApplication1\Models\myModels.edmx
 -- --------------------------------------------------
 
@@ -17,6 +17,15 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_RoleUsers]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_RoleUsers];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Subscription_TypeUsers]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_Subscription_TypeUsers];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UsersParticipants]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Participants] DROP CONSTRAINT [FK_UsersParticipants];
+GO
 IF OBJECT_ID(N'[dbo].[FK_ContestsParticipants]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Participants] DROP CONSTRAINT [FK_ContestsParticipants];
 GO
@@ -26,49 +35,40 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_RecipesUsers]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Recipes1] DROP CONSTRAINT [FK_RecipesUsers];
 GO
-IF OBJECT_ID(N'[dbo].[FK_RoleUsers]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_RoleUsers];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Subscription_TypeUsers]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_Subscription_TypeUsers];
-GO
 IF OBJECT_ID(N'[dbo].[FK_TipsUsers]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Tips] DROP CONSTRAINT [FK_TipsUsers];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UsersParticipants]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Participants] DROP CONSTRAINT [FK_UsersParticipants];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Annoucments]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Annoucments];
-GO
-IF OBJECT_ID(N'[dbo].[Contests1]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Contests1];
-GO
-IF OBJECT_ID(N'[dbo].[Feedbacks]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Feedbacks];
-GO
-IF OBJECT_ID(N'[dbo].[Participants]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Participants];
-GO
-IF OBJECT_ID(N'[dbo].[Recipes1]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Recipes1];
-GO
 IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Roles];
 GO
 IF OBJECT_ID(N'[dbo].[Subscription_Type]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Subscription_Type];
 GO
-IF OBJECT_ID(N'[dbo].[Tips]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Tips];
-GO
 IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Users];
+GO
+IF OBJECT_ID(N'[dbo].[Annoucments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Annoucments];
+GO
+IF OBJECT_ID(N'[dbo].[Contests1]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Contests1];
+GO
+IF OBJECT_ID(N'[dbo].[Participants]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Participants];
+GO
+IF OBJECT_ID(N'[dbo].[Feedbacks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Feedbacks];
+GO
+IF OBJECT_ID(N'[dbo].[Recipes1]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Recipes1];
+GO
+IF OBJECT_ID(N'[dbo].[Tips]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Tips];
 GO
 
 -- --------------------------------------------------
@@ -145,7 +145,8 @@ CREATE TABLE [dbo].[Recipes1] (
     [Ingridiants] nvarchar(max)  NOT NULL,
     [Details] nvarchar(max)  NOT NULL,
     [UsersId] int  NOT NULL,
-    [ImagePath] nvarchar(max)  NOT NULL
+    [ImagePath] nvarchar(max)  NOT NULL,
+    [FreeOrPaid] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -154,6 +155,15 @@ CREATE TABLE [dbo].[Tips] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Title] nvarchar(max)  NOT NULL,
     [Details] nvarchar(max)  NOT NULL,
+    [UsersId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Recipe_Feedback'
+CREATE TABLE [dbo].[Recipe_Feedback] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [RecipeFeedback] nvarchar(max)  NOT NULL,
+    [RecipesId] int  NOT NULL,
     [UsersId] int  NOT NULL
 );
 GO
@@ -213,6 +223,12 @@ GO
 -- Creating primary key on [Id] in table 'Tips'
 ALTER TABLE [dbo].[Tips]
 ADD CONSTRAINT [PK_Tips]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Recipe_Feedback'
+ALTER TABLE [dbo].[Recipe_Feedback]
+ADD CONSTRAINT [PK_Recipe_Feedback]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -322,6 +338,36 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_TipsUsers'
 CREATE INDEX [IX_FK_TipsUsers]
 ON [dbo].[Tips]
+    ([UsersId]);
+GO
+
+-- Creating foreign key on [RecipesId] in table 'Recipe_Feedback'
+ALTER TABLE [dbo].[Recipe_Feedback]
+ADD CONSTRAINT [FK_Recipe_FeedbackRecipes]
+    FOREIGN KEY ([RecipesId])
+    REFERENCES [dbo].[Recipes1]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Recipe_FeedbackRecipes'
+CREATE INDEX [IX_FK_Recipe_FeedbackRecipes]
+ON [dbo].[Recipe_Feedback]
+    ([RecipesId]);
+GO
+
+-- Creating foreign key on [UsersId] in table 'Recipe_Feedback'
+ALTER TABLE [dbo].[Recipe_Feedback]
+ADD CONSTRAINT [FK_Recipe_FeedbackUsers]
+    FOREIGN KEY ([UsersId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Recipe_FeedbackUsers'
+CREATE INDEX [IX_FK_Recipe_FeedbackUsers]
+ON [dbo].[Recipe_Feedback]
     ([UsersId]);
 GO
 

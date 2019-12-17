@@ -12,6 +12,7 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,7 @@ namespace WebApplication1.Models
             this.Feedbacks = new HashSet<Feedbacks>();
             this.Recipes = new HashSet<Recipes>();
             this.Tips = new HashSet<Tips>();
+            this.Recipe_Feedback = new HashSet<Recipe_Feedback>();
         }
 
         public int Id { get; set; }
@@ -50,5 +52,7 @@ namespace WebApplication1.Models
         public virtual ICollection<Recipes> Recipes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tips> Tips { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Recipe_Feedback> Recipe_Feedback { get; set; }
     }
 }

@@ -34,5 +34,6 @@ namespace WebApplication1.Models
         public virtual DbSet<Feedbacks> Feedbacks { get; set; }
         public virtual DbSet<Recipes> Recipes1 { get; set; }
         public virtual DbSet<Tips> Tips { get; set; }
+        public virtual DbSet<Recipe_Feedback> Recipe_Feedback { get; set; }
     }
 }

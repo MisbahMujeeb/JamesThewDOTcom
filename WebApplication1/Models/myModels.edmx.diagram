@@ -21,6 +21,9 @@
         <AssociationConnector Association="JamesThewDOTcomModel.RecipesUsers" />
         <EntityTypeShape EntityType="JamesThewDOTcomModel.Tips" Width="1.5" PointX="6.125" PointY="0.5" />
         <AssociationConnector Association="JamesThewDOTcomModel.TipsUsers" />
+        <EntityTypeShape EntityType="JamesThewDOTcomModel.Recipe_Feedback" Width="1.5" PointX="0.5" PointY="4.625" />
+        <AssociationConnector Association="JamesThewDOTcomModel.Recipe_FeedbackRecipes" />
+        <AssociationConnector Association="JamesThewDOTcomModel.Recipe_FeedbackUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
