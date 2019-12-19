@@ -12,7 +12,11 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+        public ActionResult FAQs()
+        {
+            return View();
+        }
 
-       
+
     }
 }

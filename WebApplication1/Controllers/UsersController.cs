@@ -137,7 +137,21 @@ namespace WebApplication1.Controllers
             Session.RemoveAll();
             return Redirect("/home/index");
         }
+        public ActionResult profile()
+        {
+            var Pid = Session["UserId"];
+            if (Pid == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Users users = db.Users.Find(Pid);
+            if (users == null)
+            {
+                return HttpNotFound();
+            }
+            return View(users);
+        }
 
-       
+
     }
 }

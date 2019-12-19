@@ -18,7 +18,6 @@ namespace WebApplication1.Controllers
         // GET: Recipes
         public ActionResult Index(string searchRecipe)
         {
-
             ViewBag.search = searchRecipe;
             if (searchRecipe == null)
             {
@@ -27,20 +26,6 @@ namespace WebApplication1.Controllers
             else
             {
                 return View(db.Recipes1.Where(x => x.Title.Contains(searchRecipe)).ToList());
-
-            }
-        }
-        public JsonResult API(string searchRecipe)
-        {
-            
-            if (searchRecipe == null)
-            {
-                return Json(db.Recipes1.ToList(), JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(db.Recipes1.Where(x => x.Title.Contains(searchRecipe)).ToList(), JsonRequestBehavior.AllowGet);
-
             }
         }
 

@@ -4,257 +4,257 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="JamesThewDOTcomModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="JamesThewDOTcomModelStoreContainer">
-    <EntitySet Name="Roles" EntityType="JamesThewDOTcomModel.Store.Roles" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Subscription_Type" EntityType="JamesThewDOTcomModel.Store.Subscription_Type" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Users" EntityType="JamesThewDOTcomModel.Store.Users" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Annoucments" EntityType="JamesThewDOTcomModel.Store.Annoucments" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Contests1" EntityType="JamesThewDOTcomModel.Store.Contests1" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Participants" EntityType="JamesThewDOTcomModel.Store.Participants" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Feedbacks" EntityType="JamesThewDOTcomModel.Store.Feedbacks" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Recipes1" EntityType="JamesThewDOTcomModel.Store.Recipes1" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Tips" EntityType="JamesThewDOTcomModel.Store.Tips" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Recipe_Feedback" EntityType="JamesThewDOTcomModel.Store.Recipe_Feedback" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="RoleUsers" Association="JamesThewDOTcomModel.Store.RoleUsers">
-      <End Role="Role" EntitySet="Roles" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-    <AssociationSet Name="Subscription_TypeUsers" Association="JamesThewDOTcomModel.Store.Subscription_TypeUsers">
-      <End Role="Subscription_Type" EntitySet="Subscription_Type" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-    <AssociationSet Name="UsersParticipants" Association="JamesThewDOTcomModel.Store.UsersParticipants">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Participants" EntitySet="Participants" />
-    </AssociationSet>
-    <AssociationSet Name="ContestsParticipants" Association="JamesThewDOTcomModel.Store.ContestsParticipants">
-      <End Role="Contests" EntitySet="Contests1" />
-      <End Role="Participants" EntitySet="Participants" />
-    </AssociationSet>
-    <AssociationSet Name="FeedbacksUsers" Association="JamesThewDOTcomModel.Store.FeedbacksUsers">
-      <End Role="Feedbacks" EntitySet="Feedbacks" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-    <AssociationSet Name="RecipesUsers" Association="JamesThewDOTcomModel.Store.RecipesUsers">
-      <End Role="Recipes" EntitySet="Recipes1" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-    <AssociationSet Name="TipsUsers" Association="JamesThewDOTcomModel.Store.TipsUsers">
-      <End Role="Tips" EntitySet="Tips" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-    <AssociationSet Name="Recipe_FeedbackRecipes" Association="JamesThewDOTcomModel.Store.Recipe_FeedbackRecipes">
-      <End Role="Recipe_Feedback" EntitySet="Recipe_Feedback" />
-      <End Role="Recipes" EntitySet="Recipes1" />
-    </AssociationSet>
-    <AssociationSet Name="Recipe_FeedbackUsers" Association="JamesThewDOTcomModel.Store.Recipe_FeedbackUsers">
-      <End Role="Recipe_Feedback" EntitySet="Recipe_Feedback" />
-      <End Role="Users" EntitySet="Users" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Roles">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Role_name" Type="varchar" Nullable="true" MaxLength="10" />
-  </EntityType>
-  <EntityType Name="Subscription_Type">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Sub_Type" Type="varchar" Nullable="true" MaxLength="10" />
-  </EntityType>
-  <EntityType Name="Users">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="User_Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Role_id" Type="int" Nullable="false" />
-    <Property Name="Subscription_Type_id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Annoucments">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Date_Of_Annoucment" Type="datetime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Contests1">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="StartDate" Type="datetime" Nullable="false" />
-    <Property Name="EndDate" Type="datetime" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Participants">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ingridiants" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Details" Type="time" Nullable="false" Precision="7" />
-    <Property Name="UsersId" Type="int" Nullable="false" />
-    <Property Name="ContestsId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Feedbacks">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UsersId" Type="int" Nullable="false" />
-    <Property Name="Feedback" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Recipes1">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ingridiants" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UsersId" Type="int" Nullable="false" />
-    <Property Name="ImagePath" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FreeOrPaid" Type="nvarchar(max)" Nullable="false" DefaultValue="Paid" />
-  </EntityType>
-  <EntityType Name="Tips">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UsersId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Recipe_Feedback">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="RecipeFeedback" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="RecipesId" Type="int" Nullable="false" />
-    <Property Name="UsersId" Type="int" Nullable="false" />
-  </EntityType>
-  <Association Name="RoleUsers">
-    <End Role="Role" Type="JamesThewDOTcomModel.Store.Roles" Multiplicity="1" />
-    <End Role="Users" Type="JamesThewDOTcomModel.Store.Users" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Users">
-        <PropertyRef Name="Role_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Subscription_TypeUsers">
-    <End Role="Subscription_Type" Type="JamesThewDOTcomModel.Store.Subscription_Type" Multiplicity="1" />
-    <End Role="Users" Type="JamesThewDOTcomModel.Store.Users" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Subscription_Type">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Users">
-        <PropertyRef Name="Subscription_Type_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UsersParticipants">
-    <End Role="Users" Type="JamesThewDOTcomModel.Store.Users" Multiplicity="1" />
-    <End Role="Participants" Type="JamesThewDOTcomModel.Store.Participants" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Participants">
-        <PropertyRef Name="UsersId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ContestsParticipants">
-    <End Role="Contests" Type="JamesThewDOTcomModel.Store.Contests1" Multiplicity="1" />
-    <End Role="Participants" Type="JamesThewDOTcomModel.Store.Participants" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Contests">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Participants">
-        <PropertyRef Name="ContestsId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FeedbacksUsers">
-    <End Role="Feedbacks" Type="JamesThewDOTcomModel.Store.Feedbacks" Multiplicity="*" />
-    <End Role="Users" Type="JamesThewDOTcomModel.Store.Users" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Feedbacks">
-        <PropertyRef Name="UsersId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RecipesUsers">
-    <End Role="Recipes" Type="JamesThewDOTcomModel.Store.Recipes1" Multiplicity="*" />
-    <End Role="Users" Type="JamesThewDOTcomModel.Store.Users" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Recipes">
-        <PropertyRef Name="UsersId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TipsUsers">
-    <End Role="Tips" Type="JamesThewDOTcomModel.Store.Tips" Multiplicity="*" />
-    <End Role="Users" Type="JamesThewDOTcomModel.Store.Users" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Tips">
-        <PropertyRef Name="UsersId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Recipe_FeedbackRecipes">
-    <End Role="Recipe_Feedback" Type="JamesThewDOTcomModel.Store.Recipe_Feedback" Multiplicity="*" />
-    <End Role="Recipes" Type="JamesThewDOTcomModel.Store.Recipes1" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Recipes">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Recipe_Feedback">
-        <PropertyRef Name="RecipesId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Recipe_FeedbackUsers">
-    <End Role="Recipe_Feedback" Type="JamesThewDOTcomModel.Store.Recipe_Feedback" Multiplicity="*" />
-    <End Role="Users" Type="JamesThewDOTcomModel.Store.Users" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Recipe_Feedback">
-        <PropertyRef Name="UsersId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="JamesThewDOTcomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Annoucments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date_Of_Annoucment" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contests1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Feedbacks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsersId" Type="int" Nullable="false" />
+          <Property Name="Feedback" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Participants">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ingridiants" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Details" Type="varchar" MaxLength="200" />
+          <Property Name="UsersId" Type="int" Nullable="false" />
+          <Property Name="ContestsId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recipe_Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecipeFeedback" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RecipesId" Type="int" Nullable="false" />
+          <Property Name="UsersId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recipes1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ingridiants" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UsersId" Type="int" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FreeOrPaid" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_name" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Subscription_Type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sub_Type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Tips">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UsersId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Role_id" Type="int" Nullable="false" />
+          <Property Name="Subscription_Type_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ContestsParticipants">
+          <End Role="Contests1" Type="Self.Contests1" Multiplicity="1" />
+          <End Role="Participants" Type="Self.Participants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contests1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Participants">
+              <PropertyRef Name="ContestsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeedbacksUsers">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feedbacks">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recipe_FeedbackRecipes">
+          <End Role="Recipes1" Type="Self.Recipes1" Multiplicity="1" />
+          <End Role="Recipe_Feedback" Type="Self.Recipe_Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recipe_Feedback">
+              <PropertyRef Name="RecipesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recipe_FeedbackUsers">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Recipe_Feedback" Type="Self.Recipe_Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recipe_Feedback">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipesUsers">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Recipes1" Type="Self.Recipes1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recipes1">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleUsers">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subscription_TypeUsers">
+          <End Role="Subscription_Type" Type="Self.Subscription_Type" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscription_Type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Subscription_Type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TipsUsers">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Tips" Type="Self.Tips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tips">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersParticipants">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Participants" Type="Self.Participants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Participants">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JamesThewDOTcomModelStoreContainer">
+          <EntitySet Name="Annoucments" EntityType="Self.Annoucments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contests1" EntityType="Self.Contests1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedbacks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recipe_Feedback" EntityType="Self.Recipe_Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recipes1" EntityType="Self.Recipes1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subscription_Type" EntityType="Self.Subscription_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tips" EntityType="Self.Tips" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ContestsParticipants" Association="Self.FK_ContestsParticipants">
+            <End Role="Contests1" EntitySet="Contests1" />
+            <End Role="Participants" EntitySet="Participants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeedbacksUsers" Association="Self.FK_FeedbacksUsers">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Feedbacks" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recipe_FeedbackRecipes" Association="Self.FK_Recipe_FeedbackRecipes">
+            <End Role="Recipes1" EntitySet="Recipes1" />
+            <End Role="Recipe_Feedback" EntitySet="Recipe_Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recipe_FeedbackUsers" Association="Self.FK_Recipe_FeedbackUsers">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Recipe_Feedback" EntitySet="Recipe_Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipesUsers" Association="Self.FK_RecipesUsers">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Recipes1" EntitySet="Recipes1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleUsers" Association="Self.FK_RoleUsers">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subscription_TypeUsers" Association="Self.FK_Subscription_TypeUsers">
+            <End Role="Subscription_Type" EntitySet="Subscription_Type" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TipsUsers" Association="Self.FK_TipsUsers">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tips" EntitySet="Tips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersParticipants" Association="Self.FK_UsersParticipants">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Participants" EntitySet="Participants" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JamesThewDOTcomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -381,7 +381,7 @@
           <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Participants" Relationship="JamesThewDOTcomModel.ContestsParticipants" FromRole="Contests" ToRole="Participants" />
         </EntityType>
         <EntityType Name="Participants">
@@ -391,7 +391,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Ingridiants" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Details" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Details" Type="String" Unicode="false" FixedLength="false" MaxLength="200" />
           <NavigationProperty Name="User" Relationship="JamesThewDOTcomModel.UsersParticipants" FromRole="Participants" ToRole="Users" />
           <Property Name="UsersId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Contest" Relationship="JamesThewDOTcomModel.ContestsParticipants" FromRole="Participants" ToRole="Contests" />
@@ -452,9 +452,9 @@
           <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="User" Relationship="JamesThewDOTcomModel.RecipesUsers" FromRole="Recipes" ToRole="Users" />
           <Property Name="UsersId" Type="Int32" Nullable="false" />
-          <Property Name="ImagePath" Type="String" Nullable="false" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Recipe_Feedback" Relationship="JamesThewDOTcomModel.Recipe_FeedbackRecipes" FromRole="Recipes" ToRole="Recipe_Feedback" />
-          <Property Name="FreeOrPaid" Type="String" Nullable="false" DefaultValue="Paid" />
+          <Property Name="FreeOrPaid" Type="String" Nullable="false" DefaultValue="Paid" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <Association Name="RecipesUsers">
           <End Type="JamesThewDOTcomModel.Recipes" Role="Recipes" Multiplicity="*" />
@@ -474,7 +474,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Details" Type="String" Nullable="false" />
+          <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="User" Relationship="JamesThewDOTcomModel.TipsUsers" FromRole="Tips" ToRole="Users" />
           <Property Name="UsersId" Type="Int32" Nullable="false" />
         </EntityType>
@@ -495,7 +495,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RecipeFeedback" Type="String" Nullable="false" />
+          <Property Name="RecipeFeedback" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Recipe" Relationship="JamesThewDOTcomModel.Recipe_FeedbackRecipes" FromRole="Recipe_Feedback" ToRole="Recipes" />
           <Property Name="RecipesId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="JamesThewDOTcomModel.Recipe_FeedbackUsers" FromRole="Recipe_Feedback" ToRole="Users" />

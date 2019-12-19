@@ -123,7 +123,7 @@
     <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Participants" Relationship="JamesThewDOTcomModel.ContestsParticipants" FromRole="Contests" ToRole="Participants" />
   </EntityType>
   <EntityType Name="Participants">
@@ -133,7 +133,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="Ingridiants" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="Details" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Details" Type="String" Unicode="false" FixedLength="false" MaxLength="200" />
     <NavigationProperty Name="User" Relationship="JamesThewDOTcomModel.UsersParticipants" FromRole="Participants" ToRole="Users" />
     <Property Name="UsersId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Contest" Relationship="JamesThewDOTcomModel.ContestsParticipants" FromRole="Participants" ToRole="Contests" />
@@ -194,9 +194,9 @@
     <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="User" Relationship="JamesThewDOTcomModel.RecipesUsers" FromRole="Recipes" ToRole="Users" />
     <Property Name="UsersId" Type="Int32" Nullable="false" />
-    <Property Name="ImagePath" Type="String" Nullable="false" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Recipe_Feedback" Relationship="JamesThewDOTcomModel.Recipe_FeedbackRecipes" FromRole="Recipes" ToRole="Recipe_Feedback" />
-    <Property Name="FreeOrPaid" Type="String" Nullable="false" DefaultValue="Paid" />
+    <Property Name="FreeOrPaid" Type="String" Nullable="false" DefaultValue="Paid" MaxLength="Max" Unicode="true" FixedLength="false" />
   </EntityType>
   <Association Name="RecipesUsers">
     <End Type="JamesThewDOTcomModel.Recipes" Role="Recipes" Multiplicity="*" />
@@ -216,7 +216,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="Details" Type="String" Nullable="false" />
+    <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="User" Relationship="JamesThewDOTcomModel.TipsUsers" FromRole="Tips" ToRole="Users" />
     <Property Name="UsersId" Type="Int32" Nullable="false" />
   </EntityType>
@@ -237,7 +237,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="RecipeFeedback" Type="String" Nullable="false" />
+    <Property Name="RecipeFeedback" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Recipe" Relationship="JamesThewDOTcomModel.Recipe_FeedbackRecipes" FromRole="Recipe_Feedback" ToRole="Recipes" />
     <Property Name="RecipesId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="User" Relationship="JamesThewDOTcomModel.Recipe_FeedbackUsers" FromRole="Recipe_Feedback" ToRole="Users" />

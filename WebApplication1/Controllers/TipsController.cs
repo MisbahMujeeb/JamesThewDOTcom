@@ -17,7 +17,7 @@ namespace WebApplication1.Controllers
         // GET: Tips
         public ActionResult Index(string searchTips)
         {
-            ViewBag.search = searchTips;
+            ViewBag.searchTips = searchTips;
             if (searchTips == null)
             {
                 return View(db.Tips.ToList());
@@ -25,18 +25,6 @@ namespace WebApplication1.Controllers
             else
             {
                 return View(db.Tips.Where(x => x.Title.Contains(searchTips)).ToList());
-
-            }
-        }
-        public JsonResult API(string searchTips)
-        {
-            if (searchTips == null)
-            {
-                return Json(db.Tips.ToList(),JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(db.Tips.Where(x => x.Title.Contains(searchTips)).ToList(), JsonRequestBehavior.AllowGet);
 
             }
         }

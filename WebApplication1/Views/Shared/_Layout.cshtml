@@ -24,14 +24,16 @@
                     <li>@Html.ActionLink("Recipes", "Index", "Recipes")</li>
                     <li>@Html.ActionLink("Tips", "Index", "Tips")</li>
                     <li>@Html.ActionLink("Contest", "Index", "Contests")</li>
+                    <li>@Html.ActionLink("ParticipateInContest", "index", "Participants")</li>
                     <li>@Html.ActionLink("Annoucement", "Index", "Annoucments")</li>
                     <li>@Html.ActionLink("FAQ's", "FAQs", "Home")</li>
                     <li>@Html.ActionLink("Feedback", "index", "feedbacks")</li>
+
                 </ul>
                 @if (Session["UserName"] != null)
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"> @Session["UserName"] </a>
+                        <li><a href="/Users/Profile"> @Session["UserName"] </a>
                         <li />
                         <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
                     </ul>

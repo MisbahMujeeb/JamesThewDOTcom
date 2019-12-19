@@ -11,9 +11,9 @@
 </p>
 @using (Html.BeginForm("Index", "Tips", FormMethod.Get))
 {
-    <input value="@ViewBag.searchTips" class="form-control pull-right my_search_Tips" type="text" placeholder="Search Here..." name="searchTips" />
+    <input value="@ViewBag.searchTips" class="form-control pull-right" type="text" placeholder="Search Here..." name="searchTips" />
 }
-<table class="table data_here_Tips">
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -47,20 +47,3 @@
 }
 
 </table>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function () {
-        $(".my_search_Tips").keyup(function () {
-            var searchTips = $(".my_search_Tips").val();
-            $(".data_here_Tips").empty();
-            $.get("/Tips/API?searchTips=" + searchTips, function (jsonData) {
-                $.each(jsonData, function (index, value) {
-                    console.log(value);
-                    $(".data_here_Tips").append("<tr><td>" + (value.Title) + "</td><td>" + (value.Details) + "</td><td>" + (value.User_Name) + "</td><tr>");
-                });
-            });
-        });
-    })
-</script>
