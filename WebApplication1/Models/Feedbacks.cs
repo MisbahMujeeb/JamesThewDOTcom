@@ -20,5 +20,6 @@ namespace WebApplication1.Models
         [Display(Name = "Feedback")]
         [DataType(DataType.MultilineText)]
         public string Feedback { get; set; }
+        public virtual Users User { get; set; }
     }
 }

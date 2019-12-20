@@ -26,7 +26,7 @@ namespace WebApplication1.Models
         [Display(Name = "Details")]
         [Required]
         [DataType(DataType.MultilineText)]
-        public System.TimeSpan Details { get; set; }
+        public string Details { get; set; }
         public int UsersId { get; set; }
         [Display(Name = "Contest")]
         public int ContestsId { get; set; }

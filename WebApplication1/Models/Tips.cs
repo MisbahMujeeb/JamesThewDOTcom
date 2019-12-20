@@ -24,5 +24,6 @@ namespace WebApplication1.Models
         [DataType(DataType.MultilineText)]
         public string Details { get; set; }
         public int UsersId { get; set; }
+        public virtual Users User { get; set; }
     }
 }
