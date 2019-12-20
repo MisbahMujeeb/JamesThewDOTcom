@@ -15,9 +15,10 @@ namespace WebApplication1.Controllers
         private JamesThewDOTcomEntities db = new JamesThewDOTcomEntities();
 
         // GET: Recipe_Feedback
-        public ActionResult Index(int recipe)
+        public ActionResult Index(int? id)
         {
-            return View(db.Recipe_Feedback.Where(x => x.RecipesId == recipe).ToList());
+
+            return View(db.Recipe_Feedback.Where(x => x.RecipesId == id).ToList());
             //var recipe_Feedback = db.Recipe_Feedback.Include(r => r.Recipe).Include(r => r.User);
             //return View(recipe_Feedback.ToList());
         }
