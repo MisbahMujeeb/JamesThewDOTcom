@@ -57,7 +57,7 @@ namespace WebApplication1.Controllers
             {
                 db.Recipe_Feedback.Add(recipe_Feedback);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Recipes");
             }
 
             ViewBag.RecipesId = new SelectList(db.Recipes1, "Id", "Title", recipe_Feedback.RecipesId);
