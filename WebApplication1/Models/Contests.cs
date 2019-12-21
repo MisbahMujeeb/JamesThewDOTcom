@@ -11,8 +11,7 @@ namespace WebApplication1.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Contests
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,24 +19,13 @@ namespace WebApplication1.Models
         {
             this.Participants = new HashSet<Participants>();
         }
-
+    
         public int Id { get; set; }
-        [Display(Name = "Title")]
-        [Required]
         public string Title { get; set; }
-        [Display(Name = "Details")]
-        [Required]
-        [DataType(DataType.MultilineText)]
         public string Details { get; set; }
-        [Display(Name = "Start Date")]
-        [Required]
-        [DataType(DataType.Date)]
         public System.DateTime StartDate { get; set; }
-        [Display(Name = "End Date")]
-        [Required]
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> EndDate { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Participants> Participants { get; set; }
     }

@@ -11,15 +11,13 @@ namespace WebApplication1.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Feedbacks
     {
         public int Id { get; set; }
         public int UsersId { get; set; }
-        [Display(Name = "Feedback")]
-        [DataType(DataType.MultilineText)]
         public string Feedback { get; set; }
+    
         public virtual Users User { get; set; }
     }
 }

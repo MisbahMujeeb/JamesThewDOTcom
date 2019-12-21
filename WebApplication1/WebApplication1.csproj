@@ -175,12 +175,15 @@
     <Compile Include="Models\Annoucments.cs">
       <DependentUpon>myModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnnoucmentsMetedata.cs" />
     <Compile Include="Models\Contests.cs">
       <DependentUpon>myModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContestsMetadata.cs" />
     <Compile Include="Models\Feedbacks.cs">
       <DependentUpon>myModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FeedbacksMetadata.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\myModels.Context.cs">
       <AutoGen>True</AutoGen>
@@ -200,24 +203,30 @@
     <Compile Include="Models\Participants.cs">
       <DependentUpon>myModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ParticipantsMetadata.cs" />
     <Compile Include="Models\Recipes.cs">
       <DependentUpon>myModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RecipesMetadata.cs" />
     <Compile Include="Models\Recipe_Feedback.cs">
       <DependentUpon>myModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Recipe_FeedbackMetadata.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>myModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RoleMetadata.cs" />
     <Compile Include="Models\Subscription_Type.cs">
       <DependentUpon>myModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tips.cs">
       <DependentUpon>myModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipsMetadata.cs" />
     <Compile Include="Models\Users.cs">
       <DependentUpon>myModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UsersMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
