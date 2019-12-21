@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,126 +10,107 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class RecipesController : Controller
+    public class RolesController : Controller
     {
         private JamesThewDOTcomEntities db = new JamesThewDOTcomEntities();
 
-        // GET: Recipes
-        public ActionResult Index(string searchRecipe)
+        // GET: Roles
+        public ActionResult Index()
         {
-            ViewBag.search = searchRecipe;
-            if (searchRecipe == null)
-            {
-                return View(db.Recipes1.ToList());
-            }
-            else
-            {
-                return View(db.Recipes1.Where(x => x.Title.Contains(searchRecipe)).ToList());
-            }
+            return View(db.Roles.ToList());
         }
 
-        // GET: Recipes/Details/5
+        // GET: Roles/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Recipes recipes = db.Recipes1.Find(id);
-            if (recipes == null)
+            Role role = db.Roles.Find(id);
+            if (role == null)
             {
                 return HttpNotFound();
             }
-            return View(recipes);
+            return View(role);
         }
 
-        // GET: Recipes/Create
+        // GET: Roles/Create
         public ActionResult Create()
         {
-            ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name");
             return View();
         }
 
-        // POST: Recipes/Create
+        // POST: Roles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Recipes recipes)
+        public ActionResult Create([Bind(Include = "id,Role_name")] Role role)
         {
             if (ModelState.IsValid)
             {
-                string fileName = Path.GetFileNameWithoutExtension(recipes.ImageFile.FileName);
-                string extention = Path.GetExtension(recipes.ImageFile.FileName);
-                fileName = fileName + DateTime.Now.ToString("hhmmssfff") + extention;
-                recipes.ImagePath = "Images/" + fileName;
-                fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
-                recipes.ImageFile.SaveAs(fileName);
-
-                db.Recipes1.Add(recipes);
+                db.Roles.Add(role);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name", recipes.UsersId);
-            return View(recipes);
+            return View(role);
         }
 
-        // GET: Recipes/Edit/5
+        // GET: Roles/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Recipes recipes = db.Recipes1.Find(id);
-            if (recipes == null)
+            Role role = db.Roles.Find(id);
+            if (role == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name", recipes.UsersId);
-            return View(recipes);
+            return View(role);
         }
 
-        // POST: Recipes/Edit/5
+        // POST: Roles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Ingridiants,Details,UsersId,ImagePath,FreeOrPaid")] Recipes recipes)
+        public ActionResult Edit([Bind(Include = "id,Role_name")] Role role)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(recipes).State = EntityState.Modified;
+                db.Entry(role).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name", recipes.UsersId);
-            return View(recipes);
+            return View(role);
         }
 
-        // GET: Recipes/Delete/5
+        // GET: Roles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Recipes recipes = db.Recipes1.Find(id);
-            if (recipes == null)
+            Role role = db.Roles.Find(id);
+            if (role == null)
             {
                 return HttpNotFound();
             }
-            return View(recipes);
+            return View(role);
         }
 
-        // POST: Recipes/Delete/5
+        // POST: Roles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Recipes recipes = db.Recipes1.Find(id);
-            db.Recipes1.Remove(recipes);
+            Role role = db.Roles.Find(id);
+            db.Roles.Remove(role);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -145,10 +125,3 @@ namespace WebApplication1.Controllers
         }
     }
 }
-
-
-
-
-
-
-//public HttpPostedFileBase ImageFile { get; set; }

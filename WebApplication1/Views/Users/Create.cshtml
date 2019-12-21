@@ -40,11 +40,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Role_id, "Role_id", htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.Role_id, "Role_id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Role_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Role_id", null, htmlAttributes: new { @class = "form-control hidden" })
                 @Html.ValidationMessageFor(model => model.Role_id, "", new { @class = "text-danger" })
-            </div>
+            </div>*@
+            <input type="hidden" name="Role_id" id="Role_id"  value="@ViewBag.roleid" />
         </div>
 
         <div class="form-group">

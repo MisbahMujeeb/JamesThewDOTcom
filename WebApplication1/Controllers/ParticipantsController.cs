@@ -53,19 +53,14 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Ingridiants,Details,UsersId,ContestsId")] Participants participants)
         {
-            if (DateTime.Now > obj.EndDate)
-            {
-                ModelState.AddModelError("", "This contest has been ended.Please Apply in other Contest");
-                return View();
-            }
-            else { 
+            
             if (ModelState.IsValid)
             {
                 db.Participants.Add(participants);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            }
+            
 
             ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name", participants.UsersId);
             ViewBag.ContestsId = new SelectList(db.Contests1, "Id", "Title", participants.ContestsId);

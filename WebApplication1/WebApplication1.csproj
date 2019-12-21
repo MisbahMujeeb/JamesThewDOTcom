@@ -166,6 +166,7 @@
     <Compile Include="Controllers\ParticipantsController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Controllers\Recipe_FeedbackController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TipsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -318,6 +319,11 @@
     <Content Include="Views\Recipes\Index.cshtml" />
     <Content Include="Views\Users\profile.cshtml" />
     <Content Include="Views\Home\FAQs.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

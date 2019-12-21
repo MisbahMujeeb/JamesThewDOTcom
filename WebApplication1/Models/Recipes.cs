@@ -40,9 +40,8 @@ namespace WebApplication1.Models
         //public HttpPostedFileBase ImageFile { get; set; }
         public HttpPostedFileBase ImageFile { get; set; }
         public string FreeOrPaid { get; set; }
-
-        public virtual Users User { get; set; }
         
+        public virtual Users User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Recipe_Feedback> Recipe_Feedback { get; set; }
     }

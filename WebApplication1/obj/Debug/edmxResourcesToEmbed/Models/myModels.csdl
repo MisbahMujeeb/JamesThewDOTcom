@@ -133,7 +133,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="Ingridiants" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="Details" Type="String" Unicode="false" FixedLength="false" MaxLength="200" />
+    <Property Name="Details" Type="String" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="User" Relationship="JamesThewDOTcomModel.UsersParticipants" FromRole="Participants" ToRole="Users" />
     <Property Name="UsersId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Contest" Relationship="JamesThewDOTcomModel.ContestsParticipants" FromRole="Participants" ToRole="Contests" />

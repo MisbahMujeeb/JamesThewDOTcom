@@ -51,14 +51,18 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,User_Name,Email,Password,Role_id,Subscription_Type_id")] Users users)
         {
+            var ids = db.Roles
+                 .Where(m => m.Role_name == "User" ).SingleOrDefault().id;
+            ViewBag.roleid = ids;
+
             if (ModelState.IsValid)
             {
                 db.Users.Add(users);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.Role_id = new SelectList(db.Roles, "id", "Role_name", users.Role_id);
+        
+            //ViewBag.Role_id = new SelectList(db.Roles, "id", "Role_name", users.Role_id);
             ViewBag.Subscription_Type_id = new SelectList(db.Subscription_Type, "id", "Sub_Type", users.Subscription_Type_id);
             return View(users);
         }
