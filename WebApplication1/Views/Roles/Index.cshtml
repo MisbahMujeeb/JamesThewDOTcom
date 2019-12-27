@@ -5,10 +5,12 @@
 }
 
 <h2>Index</h2>
-
+@if (User.IsInRole("SuperAdmin"))
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -19,15 +21,17 @@
 
 @foreach (var item in Model) {
     <tr>
+@if (User.IsInRole("SuperAdmin"))
+{
         <td>
             @Html.DisplayFor(modelItem => item.Role_name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
         </td>
+}
     </tr>
 }
-
 </table>

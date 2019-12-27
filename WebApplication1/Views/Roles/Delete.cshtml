@@ -11,6 +11,8 @@
     <h4>Role</h4>
     <hr />
     <dl class="dl-horizontal">
+        @if (User.IsInRole("SuperAdmin"))
+        {
         <dt>
             @Html.DisplayNameFor(model => model.Role_name)
         </dt>
@@ -18,7 +20,7 @@
         <dd>
             @Html.DisplayFor(model => model.Role_name)
         </dd>
-
+        }
     </dl>
 
     @using (Html.BeginForm()) {

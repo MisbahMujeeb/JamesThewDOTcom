@@ -102,6 +102,7 @@
     <Property Name="Details" Type="varchar(max)" Nullable="true" />
     <Property Name="UsersId" Type="int" Nullable="false" />
     <Property Name="ContestsId" Type="int" Nullable="false" />
+    <Property Name="Status" Type="varchar" Nullable="true" MaxLength="15" />
   </EntityType>
   <EntityType Name="Feedbacks">
     <Key>

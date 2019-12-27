@@ -59,6 +59,7 @@
           <ScalarProperty Name="Details" ColumnName="Details" />
           <ScalarProperty Name="UsersId" ColumnName="UsersId" />
           <ScalarProperty Name="ContestsId" ColumnName="ContestsId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

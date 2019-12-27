@@ -20,6 +20,7 @@ namespace WebApplication1.Models
         public string Details { get; set; }
         public int UsersId { get; set; }
         public int ContestsId { get; set; }
+        public string Status { get; set; }
     
         public virtual Users User { get; set; }
         public virtual Contests Contest { get; set; }

@@ -24,18 +24,22 @@
                     <li>@Html.ActionLink("Recipes", "Index", "Recipes")</li>
                     <li>@Html.ActionLink("Tips", "Index", "Tips")</li>
                     <li>@Html.ActionLink("Contest", "Index", "Contests")</li>
-                    <li>@Html.ActionLink("ParticipateInContest", "index", "Participants")</li>
+                    <li>@Html.ActionLink("Participate", "index", "Participants")</li>
                     <li>@Html.ActionLink("Annoucement", "Index", "Annoucments")</li>
                     <li>@Html.ActionLink("FAQ's", "FAQs", "Home")</li>
                     <li>@Html.ActionLink("Feedback", "index", "feedbacks")</li>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("SuperAdmin"))
+                    {
                     <li>@Html.ActionLink("Role", "index", "Roles")</li>
-
+                    <li>@Html.ActionLink("Users", "index", "Users")</li>
+                    }
 
                 </ul>
-                @if (Session["UserName"] != null)
+                @if (Session["UserName"] != null ||User.Identity.IsAuthenticated)
                 {
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="/Users/Profile"> @Session["UserName"] </a>
+                         @*<li><a href="/Users/Profile"> @User.Identity.Name </a>*@
                         <li />
                         <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
                     </ul>

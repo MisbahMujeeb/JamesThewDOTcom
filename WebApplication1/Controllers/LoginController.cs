@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -23,6 +24,7 @@ namespace WebApplication1.Controllers
                 bool isValid = context.Users.Any(x => x.User_Name == login.User_Name && x.Password == login.Password);
                 if (isValid)
                 {
+                    FormsAuthentication.SetAuthCookie(login.User_Name, false);
                     Session["UserName"] = login.User_Name;
                     Session["UserId"] = db.Users
                  .Where(m => m.User_Name == login.User_Name&& m.Password == login.Password).SingleOrDefault().Id;

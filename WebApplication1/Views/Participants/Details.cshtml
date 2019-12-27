@@ -35,6 +35,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.User.User_Name)
         </dt>
 
@@ -53,6 +61,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+@if (User.Identity.IsAuthenticated && (User.Identity.Name == item.User.User_Name || User.IsInRole("Admin") || User.IsInRole("SuperAdmin")))
+{
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) }
     @Html.ActionLink("Back to List", "Index")
 </p>

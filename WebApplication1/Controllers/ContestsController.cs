@@ -36,6 +36,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Contests/Create
+        [Authorize(Roles ="Admin,SuperAdmin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +47,7 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Create([Bind(Include = "Id,Title,Details,StartDate,EndDate")] Contests contests)
         {
             if(contests.StartDate<DateTime.Now || contests.EndDate<DateTime.Now)
@@ -67,6 +69,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Contests/Edit/5
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -86,6 +89,7 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Edit([Bind(Include = "Id,Title,Details,StartDate,EndDate")] Contests contests)
         {
             if (ModelState.IsValid)
@@ -98,6 +102,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Contests/Delete/5
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,6 +118,7 @@ namespace WebApplication1.Controllers
         }
 
         // POST: Contests/Delete/5
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

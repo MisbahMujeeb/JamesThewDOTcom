@@ -29,7 +29,6 @@ namespace WebApplication1.Models
         public int UsersId { get; set; }
         public string ImagePath { get; set; }
         public HttpPostedFileBase ImageFile { get; set; }
-
         public string FreeOrPaid { get; set; }
     
         public virtual Users User { get; set; }

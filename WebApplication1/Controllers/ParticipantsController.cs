@@ -7,14 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
-using WebApplication1.Controllers;
 
 namespace WebApplication1.Controllers
 {
     public class ParticipantsController : Controller
     {
         private JamesThewDOTcomEntities db = new JamesThewDOTcomEntities();
-        Contests obj = new Contests();
 
         // GET: Participants
         public ActionResult Index()
@@ -51,16 +49,14 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Ingridiants,Details,UsersId,ContestsId")] Participants participants)
+        public ActionResult Create([Bind(Include = "Id,Title,Ingridiants,Details,UsersId,ContestsId,Status")] Participants participants)
         {
-            
             if (ModelState.IsValid)
             {
                 db.Participants.Add(participants);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            
 
             ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name", participants.UsersId);
             ViewBag.ContestsId = new SelectList(db.Contests1, "Id", "Title", participants.ContestsId);
@@ -68,6 +64,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Participants/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,7 +86,8 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Ingridiants,Details,UsersId,ContestsId")] Participants participants)
+        [Authorize]
+        public ActionResult Edit([Bind(Include = "Id,Title,Ingridiants,Details,UsersId,ContestsId,Status")] Participants participants)
         {
             if (ModelState.IsValid)
             {
@@ -103,6 +101,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Participants/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,6 +119,7 @@ namespace WebApplication1.Controllers
         // POST: Participants/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Participants participants = db.Participants.Find(id);

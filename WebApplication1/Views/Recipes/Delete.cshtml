@@ -11,6 +11,9 @@
     <h4>Recipes</h4>
     <hr />
     <dl class="dl-horizontal">
+@if (User.Identity.IsAuthenticated &&( User.Identity.Name == Model.User.User_Name || User.IsInRole("Admin,SuperAdmin")))
+{
+
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
@@ -58,7 +61,7 @@
         <dd>
             @Html.DisplayFor(model => model.User.User_Name)
         </dd>
-
+}
     </dl>
 
     @using (Html.BeginForm()) {

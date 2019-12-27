@@ -11,6 +11,8 @@
     <h4>Annoucments</h4>
     <hr />
     <dl class="dl-horizontal">
+@if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+{
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
@@ -34,7 +36,7 @@
         <dd>
             @Html.DisplayFor(model => model.Date_Of_Annoucment)
         </dd>
-
+}
     </dl>
 
     @using (Html.BeginForm()) {

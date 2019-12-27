@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -15,6 +16,7 @@ namespace WebApplication1.Controllers
         private JamesThewDOTcomEntities db = new JamesThewDOTcomEntities();
 
         // GET: Users
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Index()
         {
             var users = db.Users.Include(u => u.Role).Include(u => u.Subscription_Type);
@@ -22,6 +24,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Users/Details/5
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Details(int? id )
         {
             if (id == null)
@@ -68,6 +71,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Users/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,13 +93,13 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,User_Name,Email,Password,Role_id,Subscription_Type_id")] Users users)
+        public ActionResult Edit( Users users)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(users).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("profile");
             }
             ViewBag.Role_id = new SelectList(db.Roles, "id", "Role_name", users.Role_id);
             ViewBag.Subscription_Type_id = new SelectList(db.Subscription_Type, "id", "Sub_Type", users.Subscription_Type_id);
@@ -138,6 +142,7 @@ namespace WebApplication1.Controllers
         }
         public ActionResult LogOut()
         {
+            FormsAuthentication.SignOut();
             Session.RemoveAll();
             return Redirect("/home/index");
         }

@@ -45,6 +45,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Tips/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name");
@@ -54,8 +55,10 @@ namespace WebApplication1.Controllers
         // POST: Tips/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "Id,Title,Details,UsersId")] Tips tips)
         {
             if (ModelState.IsValid)
@@ -70,6 +73,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Tips/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +94,7 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,Title,Details,UsersId")] Tips tips)
         {
             if (ModelState.IsValid)
@@ -103,6 +108,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Tips/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,6 +126,7 @@ namespace WebApplication1.Controllers
         // POST: Tips/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Tips tips = db.Tips.Find(id);

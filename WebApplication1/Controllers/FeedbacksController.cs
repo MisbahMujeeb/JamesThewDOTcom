@@ -37,6 +37,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Feedbacks/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name");
@@ -48,6 +49,7 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "Id,UsersId,Feedback")] Feedbacks feedbacks)
         {
             if (ModelState.IsValid)
@@ -62,6 +64,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Feedbacks/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,6 +85,7 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,UsersId,Feedback")] Feedbacks feedbacks)
         {
             if (ModelState.IsValid)
@@ -95,6 +99,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Feedbacks/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,6 +117,7 @@ namespace WebApplication1.Controllers
         // POST: Feedbacks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Feedbacks feedbacks = db.Feedbacks.Find(id);

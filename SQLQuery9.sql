@@ -15,7 +15,7 @@ insert into Roles values('Admin'),('User'),('SuperAdmin')
 insert into  Subscription_Type values('Monthly$10'),('yearly$100')
 
 /*for Super Admin*/
-insert into Users(User_Name,Email,Password) values ('Super Admin','SAdmin@gmail.com','abc123',3,2)
+insert into Users values ('Super Admin','Admin@gmail.com','abc123',3,2)
 insert into Users values ('Admin','Admin@gmail.com','abc123',1,2)
 insert into Users values ('User','User@gmail.com','abc123',2,2)
 

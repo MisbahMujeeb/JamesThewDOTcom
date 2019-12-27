@@ -5,10 +5,12 @@
 }
 
 <h2>Index</h2>
-
+@if (User.Identity.IsAuthenticated)
+{
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -19,6 +21,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.User.User_Name)
@@ -41,15 +46,21 @@
             @Html.DisplayFor(modelItem => item.Details)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.User.User_Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Contest.Title)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+@if (User.Identity.IsAuthenticated && (User.Identity.Name == item.User.User_Name || User.IsInRole("Admin") || User.IsInRole("SuperAdmin")))
+{
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) 
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+}
         </td>
     </tr>
 }

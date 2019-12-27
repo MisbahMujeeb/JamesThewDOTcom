@@ -10,6 +10,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize(Roles ="SuperAdmin")]
     public class RolesController : Controller
     {
         private JamesThewDOTcomEntities db = new JamesThewDOTcomEntities();

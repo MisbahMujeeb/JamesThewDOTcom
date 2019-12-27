@@ -11,6 +11,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+
     public class RecipesController : Controller
     {
         private JamesThewDOTcomEntities db = new JamesThewDOTcomEntities();
@@ -21,11 +22,23 @@ namespace WebApplication1.Controllers
             ViewBag.search = searchRecipe;
             if (searchRecipe == null)
             {
+                if (Session["UserId"] == null||User.Identity.IsAuthenticated==false)
+                {
+                    var f = db.Recipes1.Where(x => x.FreeOrPaid == "Free").ToList();
+                    return View(f);
+                }
+                else { 
                 return View(db.Recipes1.ToList());
+                }
             }
             else
             {
-                return View(db.Recipes1.Where(x => x.Title.Contains(searchRecipe)).ToList());
+                if (Session["UserId"] == null || User.Identity.IsAuthenticated == false)
+                {
+                    return View(db.Recipes1.Where(x => x.Title.Contains(searchRecipe)&& x.FreeOrPaid == "Free").ToList());
+                }else {
+                    return View(db.Recipes1.Where(x => x.Title.Contains(searchRecipe)).ToList());
+                }
             }
         }
 
@@ -45,6 +58,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Recipes/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.UsersId = new SelectList(db.Users, "Id", "User_Name");
@@ -56,6 +70,7 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create(Recipes recipes)
         {
             if (ModelState.IsValid)
@@ -77,6 +92,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Recipes/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -97,6 +113,7 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,Title,Ingridiants,Details,UsersId,ImagePath,FreeOrPaid")] Recipes recipes)
         {
             if (ModelState.IsValid)
@@ -110,6 +127,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Recipes/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

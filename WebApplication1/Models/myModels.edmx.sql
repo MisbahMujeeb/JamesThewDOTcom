@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/21/2019 23:50:34
+-- Date Created: 12/27/2019 14:57:11
 -- Generated from EDMX file: C:\Users\haseeb\Desktop\eProject(JamesTHewDOTcom)\JamesThewDOTcom\WebApplication1\Models\myModels.edmx
 -- --------------------------------------------------
 
@@ -135,7 +135,8 @@ CREATE TABLE [dbo].[Participants] (
     [Ingridiants] nvarchar(max)  NOT NULL,
     [Details] varchar(max)  NULL,
     [UsersId] int  NOT NULL,
-    [ContestsId] int  NOT NULL
+    [ContestsId] int  NOT NULL,
+    [Status] varchar(15)  NULL
 );
 GO
 

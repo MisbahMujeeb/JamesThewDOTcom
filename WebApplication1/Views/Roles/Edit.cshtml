@@ -9,9 +9,11 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Role</h4>
+@if (User.IsInRole("SuperAdmin"))
+{
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
@@ -29,6 +31,7 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
+}
     </div>
 }
 

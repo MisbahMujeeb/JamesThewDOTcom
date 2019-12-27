@@ -11,6 +11,8 @@
     <h4>Contests</h4>
     <hr />
     <dl class="dl-horizontal">
+       @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+       {
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
@@ -42,7 +44,7 @@
         <dd>
             @Html.DisplayFor(model => model.EndDate)
         </dd>
-
+       }
     </dl>
 
     @using (Html.BeginForm()) {

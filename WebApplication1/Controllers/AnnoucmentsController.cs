@@ -46,6 +46,7 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Create([Bind(Include = "Id,Title,Details,Date_Of_Annoucment")] Annoucments annoucments)
         {
             
@@ -60,6 +61,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Annoucments/Edit/5
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +81,7 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Edit([Bind(Include = "Id,Title,Details,Date_Of_Annoucment")] Annoucments annoucments)
         {
             if (ModelState.IsValid)
@@ -91,6 +94,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Annoucments/Delete/5
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +112,7 @@ namespace WebApplication1.Controllers
         // POST: Annoucments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Annoucments annoucments = db.Annoucments.Find(id);
